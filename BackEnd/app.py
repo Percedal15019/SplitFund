@@ -1,9 +1,10 @@
 # backend/app.py
 from flask import Flask, request, jsonify
-from flask_cors import CORS
 from models.database import Base, engine, SessionLocal
-from services.splitter import compute_splits
-import os
+from models.users import User
+from models.wallet import Wallet
+from models.transactions import Transaction
+from logic.splitter import equal_split, ratio_split
 
 app = Flask(__name__)
 CORS(app)
@@ -264,4 +265,5 @@ def transactions():
 
 if __name__ == "__main__":
     app.run(debug=True, port=int(os.environ.get("PORT", 5000)))
+
 

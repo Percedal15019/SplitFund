@@ -1,13 +1,19 @@
 # backend/app.py
 
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from models.database import Base, engine, SessionLocal
 from models.users import User
 from models.wallet import Wallet
 from models.transactions import Transaction
-from logic.splitter import equal_split, ratio_split
+from Logic.splitter import equal_split, ratio_split
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 # Create all tables
 Base.metadata.create_all(bind=engine)
@@ -21,9 +27,15 @@ def get_db():
         db.close()
 
 
-# ----------------------------------------------------
-# 1. CREATE GROUP
-# ----------------------------------------------------
+# Root endpoint
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({"message": "SplitFund API is running!", "endpoints": {
+        "create_group": "POST /group/create",
+        "add_money": "POST /wallet/add",
+        "split_expense": "POST /expense/split",
+        "group_summary": "GET /group/summary/<group_id>"
+    }}), 200
 @app.route("/group/create", methods=["POST"])
 def create_group():
     data = request.json

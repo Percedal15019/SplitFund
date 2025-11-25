@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Expense</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Add Expense</h2>
+
+<div class="card">
+
+    <label>Group ID:</label>
+    <input type="number" id="e_group">
+
+    <label>Payer Name:</label>
+    <input type="text" id="e_payer">
+
+    <label>Participants (comma separated):</label>
+    <input type="text" id="e_participants" placeholder="Ram, Ravi">
+
+    <label>Total Amount:</label>
+    <input type="number" id="e_amount">
+
+    <label>Split Type:</label>
+    <select id="e_split">
+        <option value="equal">Equal</option>
+        <option value="ratio">Ratio</option>
+    </select>
+
+    <label>Ratio (if selected) JSON {"Ram":2,"Ravi":1}</label>
+    <input type="text" id="e_ratio">
+
+    <button onclick="addExpense()">Add Expense</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

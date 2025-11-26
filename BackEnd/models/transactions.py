@@ -13,3 +13,4 @@ class Transaction(Base):
     total_amount = Column(Integer)
     split_type = Column(String)    # equal / ratio
     details = Column(String)       # extra JSON-like notes
+    category = Column(String)      # e.g. travel, food, groceries, etc.

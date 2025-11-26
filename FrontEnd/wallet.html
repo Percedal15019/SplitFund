@@ -6,33 +6,49 @@
 </head>
 <body>
 
-<h2>Wallet – Add Money</h2>
+
+<h2>Group Members (Add Money quickly)</h2>
 
 <div class="card">
-    <label>Name:</label>
-    <input type="text" id="w_name">
 
-    <label>Group ID:</label>
-    <input type="number" id="w_group">
+    <label>Enter Group ID to load members:</label>
+    <input type="number" id="load_group_id" placeholder="Group ID">
+    <div style="display:flex; gap:10px;">
+        <button type="button" id="load_members_btn" onclick="loadWalletMembers()" style="flex:1; margin:12px 0; padding:10px 0; font-size:16px; border-radius:8px; background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:#fff; border:none;">Load Members</button>
+        <button type="button" id="add_all_btn" onclick="addAllMembersForGroup()" style="flex:1; margin:12px 0; padding:10px 0; font-size:16px; border-radius:8px; background:linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color:#fff; border:none;">Add For All</button>
+    </div>
 
-    <label>Amount:</label>
-    <input type="number" id="w_amount">
+    <div id="members_area" style="margin-top: 16px; max-height: 360px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; border-radius: 6px;">
+        <!-- populated dynamically -->
+    </div>
 
-    <button onclick="addMoney()">Add Balance</button>
+    <!-- Debug / Response output: show last server JSON here so users don't need DevTools -->
+    <div style="margin-top:12px; border-top:1px solid #eee; padding-top:10px;">
+        <div style="font-weight:600; color:#333; margin-bottom:6px;">Last server response (JSON):</div>
+        <pre id="last_response" style="background:#111; color:#0f0; padding:10px; border-radius:6px; max-height:200px; overflow:auto; white-space:pre-wrap;">No responses yet</pre>
+    </div>
+
+
 </div>
 
-<hr>
-
-<h2>Group Summary</h2>
-
-<div class="card">
-    <label>Group ID:</label>
-    <input type="number" id="sum_group">
-    <button onclick="getSummary()">Get Summary</button>
-
-    <pre id="summary_output"></pre>
+<!-- OUTSIDE CARD: back and next buttons, same size and color -->
+<div style="display:flex; justify-content:space-between; align-items:center; margin: 24px 0 0 0; max-width:350px; width:100%; margin-left:auto; margin-right:auto;">
+    <button type="button" id="back_btn_small" onclick="goBack()" style="flex:1; padding:10px 0; font-size:16px; border-radius:8px; background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:#fff; border:none; margin-right:8px;">⬅ Back</button>
+    <button type="button" id="next_btn" onclick="nextFromLoad()" style="flex:1; padding:10px 0; font-size:16px; border-radius:8px; background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:#fff; border:none; margin-left:8px;">Next ➜</button>
 </div>
 
+    <template id="member-template">
+        <div class="member-row" style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+            <!-- group-id-slot will be shown only once by JS for the first rendered template -->
+            <div class="group-id-slot" style="font-weight:bold; margin-right:8px;"></div>
+            <div class="member-name" style="flex:1;">NAME</div>
+            <input type="number" class="member-amount" placeholder="Amount">
+            <!-- individual add buttons removed; use 'Add For All' instead -->
+            <span class="member-status" style="margin-left:8px; font-size:0.9rem; color:var(--text-muted);"></span>
+        </div>
+    </template>
+
+</div>
 <script src="script.js"></script>
 </body>
 </html>

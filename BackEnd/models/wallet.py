@@ -10,3 +10,5 @@ class Wallet(Base):
     user_id = Column(Integer, ForeignKey("users.id"))
     group_id = Column(Integer)
     balance = Column(Integer, default=0)
+    # how many heads represented by this wallet (1=single, 2=couple, N=family)
+    head_count = Column(Integer, default=1)

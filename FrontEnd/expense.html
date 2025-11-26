@@ -6,18 +6,22 @@
 </head>
 <body>
 
+
 <h2>Add Expense</h2>
 
 <div class="card">
 
     <label>Group ID:</label>
     <input type="number" id="e_group">
+    <button type="button" onclick="loadExpenseMembers()" style="margin-left:8px; padding:6px 8px">Load members</button>
 
     <label>Payer Name:</label>
-    <input type="text" id="e_payer">
+    <input type="text" id="e_payer" list="payers">
+    <datalist id="payers"></datalist>
 
     <label>Participants (comma separated):</label>
-    <input type="text" id="e_participants" placeholder="Ram, Ravi">
+    <input type="text" id="e_participants" list="participants-list" placeholder="Ram, Ravi">
+    <datalist id="participants-list"></datalist>
 
     <label>Total Amount:</label>
     <input type="number" id="e_amount">
@@ -28,12 +32,25 @@
         <option value="ratio">Ratio</option>
     </select>
 
-    <label>Ratio (if selected) JSON {"Ram":2,"Ravi":1}</label>
+    <label>Category:</label>
+    <select id="e_category">
+        <option value="travel">Travel</option>
+        <option value="food">Food</option>
+        <option value="groceries">Groceries</option>
+        <option value="shopping">Shopping</option>
+        <option value="utilities">Utilities</option>
+        <option value="other">Other</option>
+    </select>
+
+    <label>Ratio (if selected, Use this format){"Ram":2,"Ravi":1}</label>
     <input type="text" id="e_ratio">
 
-    <button onclick="addExpense()">Add Expense</button>
+    <button type="button" onclick="addExpense()">Add Expense</button>
 </div>
-
+<div style="display:flex; justify-content:space-between; align-items:center; margin: 24px 0 0 0; max-width:350px; width:100%; margin-left:auto; margin-right:auto;">
+    <button type="button" id="back_btn_small" onclick="goBack()" style="flex:1; padding:10px 0; font-size:16px; border-radius:8px; background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:#fff; border:none; margin-right:8px;">⬅ Back</button>
+    <button type="button" id="next_btn" onclick="nextFromLoad()" style="flex:1; padding:10px 0; font-size:16px; border-radius:8px; background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:#fff; border:none; margin-left:8px;">Next ➜</button>
+</div>
 <script src="script.js"></script>
 </body>
 </html>

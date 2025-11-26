@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <h2>Group Summary</h2>
+
+<div class="card">
+    <label>Group ID:</label>
+    <input type="number" id="sum_group">
+    <button type="button" onclick="getSummary()">Get Summary</button>
+
+    <div id="summary_output" style="margin-top: 20px;"></div>
+</div>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
+    th {
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    tr:hover {
+        background-color: #ddd;
+    }
+    .user-section {
+        margin-bottom: 30px;
+    }
+    .user-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #4CAF50;
+        padding-bottom: 5px;
+    }
+    .balance-info {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    .balance-card {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+    }
+    .balance-card label {
+        display: block;
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 5px;
+    }
+    .balance-card .value {
+        font-size: 18px;
+        font-weight: bold;
+        color: #4CAF50;
+    }
+</style>
+
+<div style="display:flex; justify-content:space-between; align-items:center; margin: 24px 0 0 0; max-width:350px; width:100%; margin-left:auto; margin-right:auto;">
+    <button type="button" id="back_btn_small" onclick="goBack()" style="flex:1; padding:10px 0; font-size:16px; border-radius:8px; background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:#fff; border:none; margin-right:8px;">⬅ Back</button>
+    <button type="button" id="next_btn" onclick="nextFromLoad()" style="flex:1; padding:10px 0; font-size:16px; border-radius:8px; background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:#fff; border:none; margin-left:8px;">Next ➜</button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

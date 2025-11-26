@@ -50,7 +50,7 @@ To run the project in a local environment, follow these steps:
 
 ## 🚕 Google Drive Link
 
-
+https://docs.google.com/presentation/d/1xWIaOF4sH1He8bPBjIsLWh8VemTpQhxU/edit?usp=sharing&ouid=112557718315612641662&rtpof=true&sd=true
 
 
 
